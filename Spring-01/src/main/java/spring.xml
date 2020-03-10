@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    ">
+    
+    
+    <!-- IOC容器帮助我们创建对象 -->
+    <!-- 创建Dao层对象 -->
+    <bean id="userDao" class="com.dao.UserDao">
+    
+    </bean>
+    
+    <!-- 创建Service实例 -->
+    <bean id="userService" class="com.service.UserService">
+        <property name="userDao" ref="userDao"></property>
+    
+    </bean>
+    
+    <!-- 创建action实例 -->
+    <bean id="userAction" class="com.action.UserAction">
+        <!-- action实例中维护了一个service对象 , 依赖注入 -->
+        <property name="userService" ref="userService"></property>
+    </bean>
+    
+
+</beans>
