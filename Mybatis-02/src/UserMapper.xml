@@ -14,7 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </resultMap>
 
 <select id="findAll" resultMap="User">
-    select * from t_user
+    SELECT * FROM t_user
+</select>
+
+<select id="findById" resultMap="User">
+    SELECT * FROM t_user WHERE user_id =#{userId}
 </select>
 
 </mapper>

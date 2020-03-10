@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.dao.UserDao;
 import com.entity.User;
 
 public class MybatisTest {
@@ -19,14 +20,22 @@ public class MybatisTest {
             input = Resources.getResourceAsStream("mybatis.xml");
             SqlSessionFactory sqlSessionFactory =
                     new SqlSessionFactoryBuilder().build(input);
-            SqlSession session = sqlSessionFactory.openSession();
+            SqlSession sqlSession = sqlSessionFactory.openSession();
 
-            List<User> users = session.selectList("com.dao.UserDao.findAll");
+           /* List<User> users = sqlSession.selectList("com.dao.UserDao.findAll");
+            for(User user : users) {
+                System.out.println(user);
+            }*/
+            UserDao mapper = sqlSession.getMapper(UserDao.class);
+            //查找所有用户
+            List<User> users = mapper.findAll();
             for(User user : users) {
                 System.out.println(user);
             }
-
-            session.close();
+            //查找单个用户
+            User user = mapper.findById(1);
+            System.out.println(user);
+            sqlSession.close();
 
         } catch (IOException e) {
 
