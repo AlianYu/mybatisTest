@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <welcome-file-list>
+  	<welcome-file>login</welcome-file>
+  	
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.book.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DashboardServlet</servlet-name>
+    <servlet-class>com.book.servlet.DashboardServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditBookServlet</servlet-name>
+    <servlet-class>com.book.servlet.EditBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SaveBookServlet</servlet-name>
+    <servlet-class>com.book.servlet.SaveBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowMyBookServlet</servlet-name>
+    <servlet-class>com.book.servlet.ShowMyBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BookPage</servlet-name>
+    <servlet-class>com.book.servlet.BookPageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>KindOfServlet</servlet-name>
+    <servlet-class>com.book.servlet.KindOfServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DashboardServlet</servlet-name>
+    <url-pattern>/dashboard.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditBookServlet</servlet-name>
+    <url-pattern>/editbook.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SaveBookServlet</servlet-name>
+    <url-pattern>/savebook.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowMyBookServlet</servlet-name>
+    <url-pattern>/showbook.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BookPage</servlet-name>
+    <url-pattern>/bookpage.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>KindOfServlet</servlet-name>
+    <url-pattern>/kindof.action</url-pattern>
+  </servlet-mapping>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/500.html</location>
+  </error-page>
+  
+  
+  <!--配置名称为Encoding的Filter  -->
+  <filter>
+  	<filter-name>Encoding</filter-name>
+  	<filter-class>com.book.filter.PageEncodingFilter</filter-class>
+  	<init-param>
+  	<!-- 为encoding参数配置了utf-8 -->
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  <!--  为名称为Encoding的Filter设置过滤所有url
+  所有的url都会被EncodingFilter过滤
+  -->
+  <filter-mapping>
+  	<filter-name>Encoding</filter-name>
+  	<url-pattern>*.action</url-pattern>
+  </filter-mapping>
+   <filter-mapping>
+  	<filter-name>Encoding</filter-name>
+  	<url-pattern>/login</url-pattern>
+  </filter-mapping>
+  <!--配置 SessionFilter
+  不需要登录信息的页面
+   -->
+  <filter>
+  	<filter-name>SessionFilter</filter-name>
+  	<filter-class>com.book.filter.SessionFilter</filter-class>
+  	<init-param>
+  		<param-name>notNeedLoginPages</param-name>
+  		<param-value>,login.action</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>SessionFilter</filter-name>
+  	<!-- 过滤所有url -->
+  	<url-pattern>*.action</url-pattern>
+  </filter-mapping> 
+</web-app>

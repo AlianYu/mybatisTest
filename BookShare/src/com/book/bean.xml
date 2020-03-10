@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <beans>
+ <!--  IOC/DI有错误，只能主动创建依赖关系-->
+     <bean id="bookService" class="com.book.service.BookServiceimpl" scope="singleton">
+     	<!-- <property name="editBookdao" value="1" ref="editBookdao"></property>  -->
+     </bean>
+     
+     <bean id="loginService" class="com.book.service.LoginServiceimpl">
+     <!-- <property name="loginDao" value="2" ref="loginDao"></property>  -->
+     </bean>
+     
+     <bean id="loginDao" class="com.book.dao.LoginDaoimpl" scope="singleton">
+     	
+     </bean>
+     <bean id="editBookdao" class="com.book.dao.EditBookdaoimpl" scope="singleton">
+     </bean>
+ </beans>
