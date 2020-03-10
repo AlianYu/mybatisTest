@@ -1,0 +1,49 @@
+<!-- .DTD文件是xml格式文件的约束文件，它约束了该xml文件使用的标签以及标签之间的关系 -->
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+ <!-- 根标签 -->
+<configuration>
+
+<!-- properties 标签代表 加载指定路径的properties文件 -->
+<properties resource="db.properties"></properties>
+
+
+<!-- 可以配置很多数据库环境 -->
+<environments default="development">
+
+    <environment id="development">
+        
+        <!-- 使用jdbc事务管理 -->
+        <transactionManager type="JDBC"/>
+        
+        <!-- 数据库连接池 -->
+        <dataSource type="POOLED">
+            <!-- 数据库连接的参数 -->
+            <property name="driver" value="${driverName}"/>
+            <property name="url" value="${url}"/>
+            <property name="username" value="${userName}"/>
+            <property name="password" value="${password}"/>
+        </dataSource>
+
+    </environment>
+
+</environments>
+
+
+<!-- 加载 mapper映射文件 -->
+<mappers>
+    <mapper resource="UserMapper.xml"/>
+
+</mappers>
+
+<!-- <typeAliases>
+
+    
+    批量别名
+    <package name="b_sql"/>
+    
+    
+</typeAliases> -->
+</configuration>
